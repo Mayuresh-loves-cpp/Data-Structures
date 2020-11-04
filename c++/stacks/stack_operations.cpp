@@ -1,3 +1,8 @@
+/********************************************
+* Stack Operations,
+* by (owned and written by) Mayuresh Shinde
+********************************************/
+
 #include <iostream>
 #include <conio.h>
 
