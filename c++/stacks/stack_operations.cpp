@@ -1,8 +1,3 @@
-/********************************************
-* Stack Operations,
-* by (owned and written by) Mayuresh Shinde
-********************************************/
-
 #include <iostream>
 #include <conio.h>
 
@@ -134,12 +129,17 @@ void stackOperations::createStack(){
 
 void stackOperations::displayStack(){
     class node* traversePointer = new node;
-    traversePointer = currentNode;
-    std::cout << ": " << traversePointer -> value << std::endl;
-    do{
-        traversePointer = traversePointer -> next;
+    if (isEmpty()){
+        std::cout << std::endl << "stack is empty!" << std::endl;
+    }
+    else{
+        traversePointer = currentNode;
         std::cout << ": " << traversePointer -> value << std::endl;
-    }while (traversePointer -> next != NULL);
+        do{
+            traversePointer = traversePointer -> next;
+            std::cout << ": " << traversePointer -> value << std::endl;
+        }while (traversePointer -> next != NULL);
+    }
 }
 
 int main(){
