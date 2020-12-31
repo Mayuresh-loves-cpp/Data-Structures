@@ -9,8 +9,7 @@
 #include <conio.h>
 
 // node class
-class node
-{
+class node {
     public:
     int data;
     struct node* next;
@@ -18,7 +17,7 @@ class node
 
 // linked list class, has all the functions
 // for all operstions
-class linked_list{
+class linked_list {
     public:
     class node* head = new node;
     class node* head_pointer = new node;
@@ -115,7 +114,7 @@ void linked_list::display_list() {
 
 // function for making list according to
 // given input
-void linked_list::make_list(){
+void linked_list::make_list() {
     int length;
     std::cout << std::endl << "Enter length of list : ";
     std::cin >> length;
@@ -133,7 +132,7 @@ void linked_list::make_list(){
 }
 
 // function to insert element in the list
-void linked_list::insert(){
+void linked_list::insert() {
     int position, value;
     std::cout << std::endl << "please enter position value : ";
     std::cin >> position;
@@ -155,7 +154,7 @@ void linked_list::insert(){
 }
 
 // funtion to remove element in the list
-void linked_list::remove(){
+void linked_list::remove() {
     int position;
     std::cout << std::endl << "Enter position of element to delete : ";
     std::cin >> position;
@@ -175,7 +174,7 @@ void linked_list::remove(){
 }
 
 // function to append element at beginning
-void linked_list::append_beg(){
+void linked_list::append_beg() {
     int value;
     std::cout << std::endl << "Enter value to be added at beginning : ";
     std::cin >> value;
@@ -188,7 +187,7 @@ void linked_list::append_beg(){
 }
 
 // function to append element at end
-void linked_list::append_end(){
+void linked_list::append_end() {
     int value;
     std::cout << std::endl << "Enter value to be added at end : ";
     std::cin >> value;
@@ -208,7 +207,7 @@ void linked_list::append_end(){
 }
 
 // menu function
-void linked_list::menu(){
+void linked_list::menu() {
     std::cout << std::endl << "Select options: - (press key)" << std::endl;
     std::cout << "1 - make linked list" << std::endl;
     std::cout << "2 - show linked list" << std::endl;
