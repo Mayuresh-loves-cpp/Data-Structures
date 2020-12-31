@@ -24,6 +24,7 @@ class linked_list {
     void make_list1();
     void make_list2();
     void make_list(int length);
+    bool isEmpty();
     void display_list();
     void menu();
     void make_list();
@@ -32,6 +33,9 @@ class linked_list {
     void append();
     void append_beg();
     void append_end();
+    linked_list() {
+        head_pointer = NULL;
+    }
 };
 
 // creates list of one node
@@ -100,9 +104,23 @@ void linked_list :: make_list(int length) {
     
 }
 
+// checks list if empty
+bool linked_list::isEmpty() {
+    if(head_pointer == NULL) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 // displays list
 void linked_list::display_list() {
     std::cout << std::endl << "list: -" << std::endl;
+    if(isEmpty()) {
+        std::cout << "list is empty!" << std::endl;
+        menu();
+    }
     class node* display_pointer = new node;
     display_pointer = head_pointer;
     while (display_pointer != NULL){
