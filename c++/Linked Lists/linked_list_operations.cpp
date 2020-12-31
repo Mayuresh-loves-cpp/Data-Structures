@@ -136,11 +136,19 @@ void linked_list::make_list() {
     int length;
     std::cout << std::endl << "Enter length of list : ";
     std::cin >> length;
+    if(length < 0) {
+        std::cout << "length can't be negative!" << std::endl << "list is still empty!" << std::endl;
+        menu();
+    }
     if(length == 1){
         make_list1();
     }
     else if(length == 2){
         make_list2();
+    }
+    else if(length == 0) {
+        std::cout << "list is still empty!" << std::endl;
+        menu();
     }
     else{
         make_list(length);
