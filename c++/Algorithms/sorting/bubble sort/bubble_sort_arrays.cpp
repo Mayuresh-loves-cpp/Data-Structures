@@ -13,11 +13,9 @@ class data_array {
 data_array take_array(int length) {
     cout << endl << "Enter number: -" << endl;
     data_array input(length);
-    int value;
     for(int i = 0; i < length; i++) {
         cout << ": ";
-        cin >> value;
-        input.arr[i] = value;
+        cin >> input.arr[i];
     }
     return input;
 }
