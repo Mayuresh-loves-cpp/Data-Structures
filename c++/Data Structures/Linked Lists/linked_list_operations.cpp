@@ -6,7 +6,7 @@
 ****************************************/
 
 #include <iostream>
-#include <conio.h>
+//#include <conio.h>
 
 // node class
 class node {
@@ -241,12 +241,11 @@ void linked_list::menu() {
     std::cout << "4 - delete element" << std::endl;
     std::cout << "5 - append at beginning" << std::endl;
     std::cout << "6 - append at end" << std::endl;
-    std::cout << "0 - exit" << std::endl;
-    char select; 
-    jump : select = getch();
-    while(select == '0' || select == '1' || select == '2' || select == '3' || select == '4' || select == '5' || select == '6' ){
-        jmp : switch (select)
-        {
+    std::cout << "0 - exit" << std::endl << "-> ";
+    char select;
+    jump : std::cin >> select;
+    //jump : std::cin >> select;
+    switch (select) {
         case '1':
             make_list();
             break;
@@ -276,11 +275,8 @@ void linked_list::menu() {
 
         default:
             std::cout << "Please press proper key!" << std::endl;
-            break;
-        }
-        select = getch();
+            goto jump;
     }
-    goto jump;
 }
 
 // main funtion
