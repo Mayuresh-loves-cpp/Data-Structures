@@ -44,10 +44,12 @@ void create_list() {
         scanf("%d", &node->data);
 
         if(is_list_empty()) {
+            node->next = NULL;
             head = node;
             pre = node;
         }
         else {
+            node->next = NULL;
             pre->next = node;
             pre = node;
         }
