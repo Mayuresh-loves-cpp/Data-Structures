@@ -3,42 +3,72 @@
 
 using namespace std;
 
-void swap(node* head,unsigned int pos1) {
-    node* traverse_pointer = new node;
-    traverse_pointer = head;
-    node *tmp1, *tmp2;
-    traverse_pointer = head;
-    while(traverse_pointer -> next -> index == pos1) {
-        traverse_pointer = traverse_pointer -> next;
-    }
-    tmp1 = traverse_pointer -> next;
-    tmp2 = traverse_pointer -> next -> next -> next;
-    traverse_pointer -> next = traverse_pointer -> next -> next;
-    traverse_pointer -> next -> next = tmp1;
-    traverse_pointer -> next -> next -> next = tmp2;
+void swap(node* a,node* b) {
+    node* tmp = new node;
+    tmp -> data = a -> data;
+    a -> data = b -> data;
+    b -> data = tmp -> data;
 }
 
-node* sort(node* head, int length) {
+void sort_list_ascending(node* head, unsigned int length) {
     node* tmp = new node;
-    for(node* i = head; i -> next != NULL ; i -> next) {
-        for(node* j = head; j -> index < i -> index - 1 ; j -> next) {
+    for(node* i = head; i -> next != NULL; i =  i -> next) {
+        for(node* j = head; j -> index < length - i -> index - 1 ; j = j -> next) {
             if (j -> data > j -> next -> data) {
-                swap(head, j -> index);
+                swap(j, j -> next);
+            }
+        }
+    }
+}
+
+void sort_list_descending(node* head, unsigned int length) {
+    cout << "in descending sort!";
+    node* tmp = new node;
+    for(node* i = head; i -> next != NULL ; i =  i -> next) {
+        for(node* j = head; j -> index > length - i -> index - 1; j = j -> next) {
+            if (j -> data > j -> next -> data) {
+                swap(j, j -> next);
             }
         }
     }
 }
 
 void operations() {
-    int length;
+    unsigned int length;
     cout << endl << "How many numbers you want to enter: ";
     cin >> length;
 
     linked_list list;
-    list.make_list(length);
+    if(length == 1) {
+        list.make_list1();
+    }
+    else if(length == 2) {
+        list.make_list2();
+    }
+    else if(length > 2) {
+        list.make_list(length);
+    }
+    else {
+        cout << endl << "Please provide proper length!";
+    }
+    
     node* head_ptr = new node;
     head_ptr = list.get_head_pointer();
-    sort(head_ptr, length);
+
+    char type;
+    jump : cout << endl << "choose sorting type ascending or descending (type a or d): ";
+    cin >> type;
+    switch (type) {
+        case 'a':
+            sort_list_ascending(head_ptr, length);
+            break;
+        // case 'd':
+        //     sort_list_descending(head_ptr, length);
+        //     break;
+        default:
+            goto jump;
+    }
+    
     list.display_list(head_ptr);
 }
 int main() {
