@@ -61,10 +61,12 @@ void create_node() {
     scanf("%d", &node->data);
 
     if(is_list_empty()) {
+        node->next = NULL;
         head = node;
         pre_node = node;
     }
     else {
+        node->next = NULL;
         pre_node->next = node;
         pre_node = node;
     }

@@ -44,10 +44,12 @@ void create_list() {
         scanf("%d", &node->data);
 
         if(is_list_empty()) {
+            node->next = NULL;
             head = node;
             pre = node;
         }
         else {
+            node->next = NULL;
             pre->next = node;
             pre = node;
         }
@@ -162,6 +164,7 @@ void delete_node() {
 void menu() {
     char c;
 
+label:
     printf("\nSelect options: \n");
     printf("\n1 - Create list");
     printf("\n2 - Display list");
@@ -169,7 +172,7 @@ void menu() {
     printf("\n4 - Delete existing node");
     printf("\n0 - Exit\n\n");
 
-    input: c = getchar();
+    c = getchar();
 
     while(1) {
         switch(c) {
@@ -190,7 +193,7 @@ void menu() {
             default: printf("\nSelect correct option!\n");
         }
         getchar(); // clear input buffer
-        goto input;
+        goto label;
     }
 }
 
