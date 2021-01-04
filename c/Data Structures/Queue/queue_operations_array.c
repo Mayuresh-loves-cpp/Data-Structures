@@ -64,7 +64,7 @@ void display() {
 }
 
 bool isEmpty() {
-    if(front == -1 || front > rear)
+    if(front == -1 || front == rear + 1)
         return 1;
     else
         return 0;
