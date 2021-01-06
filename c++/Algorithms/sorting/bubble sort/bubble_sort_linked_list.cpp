@@ -22,11 +22,10 @@ void sort_list_ascending(node* head, unsigned int length) {
 }
 
 void sort_list_descending(node* head, unsigned int length) {
-    cout << "in descending sort!";
     node* tmp = new node;
     for(node* i = head; i -> next != NULL ; i =  i -> next) {
-        for(node* j = head; j -> index > length - i -> index - 1; j = j -> next) {
-            if (j -> data > j -> next -> data) {
+        for(node* j = head; j -> index < length - i -> index - 1; j = j -> next) {
+            if (j -> data < j -> next -> data) {
                 swap(j, j -> next);
             }
         }
@@ -62,9 +61,9 @@ void operations() {
         case 'a':
             sort_list_ascending(head_ptr, length);
             break;
-        // case 'd':
-        //     sort_list_descending(head_ptr, length);
-        //     break;
+        case 'd':
+            sort_list_descending(head_ptr, length);
+                break;
         default:
             goto jump;
     }
