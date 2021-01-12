@@ -1,2 +1,2 @@
 # Data-Structures
-Open Sourced code for different Data Structures and algorithms
+Open Sourced code for different Data Structures and Algorithms

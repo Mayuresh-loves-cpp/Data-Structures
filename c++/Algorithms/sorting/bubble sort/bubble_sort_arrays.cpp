@@ -5,8 +5,8 @@ class data_array {
     public:
     int length, *arr;
     data_array(int len) {
-        arr = new int(length);
         length = len;
+        arr = new int(length);
     }
 };
  
@@ -81,8 +81,6 @@ void operations() {
         default:
             goto jump;
     }
-
-    
     display_array(input_array);
 }
  
