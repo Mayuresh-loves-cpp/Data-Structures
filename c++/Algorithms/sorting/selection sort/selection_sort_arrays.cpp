@@ -4,128 +4,89 @@
 
 using namespace std;
 
-class data_array {
+class arr {
     public:
-    int length, *arr;
-    data_array(int len) {
+    int *a;
+    long int length;
+    arr(long int len) {
         length = len;
-        arr = new int(length);
+        int* a = new int(len);
     }
 };
 
-data_array generateRamdomArray(int length) {
-    data_array array(length);
+int* generateRamdomArray(int length) {
+    int* array = new int(length);
     srand(time(0));
     for(int i = 0; i < length; i++) {
-        array.arr[i] = rand()%(10000+1-(-10000))+(-10000);
+        array[i] = rand()%(10000+1-(-10000))+(-10000);
     }
     return array;
 }
 
-data_array take_array(int length) {
-    cout << endl << "Enter number: -" << endl;
-    data_array input(length);
-    for(int i = 0; i < length; i++) {
-        cout << ": ";
-        cin >> input.arr[i];
-    }
-    return input;
-}
-
-int getMinElementPosition(data_array array, int first) {
-    int min = array.arr[first], minPos = -1;
-    for(int i = first; i < array.length; i++) {
-        if(min > array.arr[i]) {
-            minPos = i;
-        }
-    }
-    return minPos;
-}
-
-int getMaxElementPosition(data_array array, int first) {
-    int min = array.arr[first], minPos = -1;
-    for(int i = first; i < array.length; i++) {
-        if(min < array.arr[i]) {
-            minPos = i;
-        }
-    }
-    return minPos;
-}
-
-data_array sort_array_ascending(data_array given_array) {
-    int tmp, pos;
-    for(int i = 0; i < given_array.length; i++) { 
-        pos = getMinElementPosition(given_array, i);
-        if(pos >= 0 && pos < given_array.length) {
-            tmp = given_array.arr[i];
-            given_array.arr[i] = given_array.arr[pos];
-            given_array.arr[pos] = tmp;
-        }
-    }
-    return given_array;
-}
-
-data_array sort_array_descending(data_array given_array) {
-    int tmp, pos;
-    for(int i = 0; i < given_array.length; i++) { 
-        pos = getMaxElementPosition(given_array, i);
-        if(pos >= 0 && pos < given_array.length) {
-            tmp = given_array.arr[i];
-            given_array.arr[i] = given_array.arr[pos];
-            given_array.arr[pos] = tmp;
-        }
-    }
-    return given_array;
-}
-
-void display_array(data_array array) {
-    cout << "[";
-    for(int i = 0; i < array.length; i++) {
-        cout << array.arr[i];
-        if(i < array.length - 1) {
+void display_array(arr* array) {
+    cout << " [";
+    for(int i = 0; i < array -> length; i++) {
+        cout << array -> a[i];
+        if(i < array -> length -1) {
             cout << ", ";
         }
     }
-    cout << "]" << endl << endl;
+    cout << "]" << endl;
 }
 
-void operations() {
-    int length;
-    
-    cout << endl << "Do you want to: -" << endl <<
-    endl << "1 - generate array of random numbers" << 
-    endl << "2 - or manualy enter numbers" << endl << ": ";
-    char c = getchar();
-    cout << endl << "Enter size of array: ";
+void selection_sort(arr* array) {
+    int min, tmp;
+    for(int i = 0; i < array -> length - 1; i++) {
+        min = i;
+        for(int j = i + 1; j < array -> length; j++) {
+            if(array -> a[j] < array -> a[min]) {
+                min = j;
+            }
+        }
+        tmp = array -> a[min];
+        array -> a[min] = array -> a[i];
+        array -> a[i] = tmp;
+    }
+}
+
+void sort_random() {
+    long int length = 0;
+
+    cout << endl << "How many random numbers you want to generate: ";
     cin >> length;
-    data_array input_array(length);
-    jump_1 : switch(c) {
+    
+    arr* input_array = new arr(length);
+    
+    input_array -> a = generateRamdomArray(length);
+    
+    cout << endl << "Numbers that are generated:";
+    display_array(input_array);
+    cout << endl;
+    
+    cout << "Sorting array..." << endl << endl;
+    selection_sort(input_array);
+    
+    cout << "Your sorted array is:";
+    display_array(input_array);
+    cout << endl;
+}
+void sort_manual() {}
+
+void operations() {
+    cout << endl << "Enter: -" << endl;
+    cout << "1 - if you to generate array of random numbers" << endl;
+    cout << "2 - if you want to enter numbers manualy" << endl;
+    cout << ": ";
+    jump : switch (getchar()) {
         case '1':
-            input_array = generateRamdomArray(length);
-            cout << endl << "generated array is: ";
-            display_array(input_array);
+            sort_random();
             break;
         case '2':
-            input_array = take_array(length);
-            break;
-        default:
-            cin >> c;
-            goto jump_1;
-    }
-    jump : cout << endl << "choose sorting type ascending or descending (type a or d): ";
-    cin >> c;
-    switch (c) {
-        case 'a':
-            input_array = sort_array_ascending(input_array);
-            break;
-        case 'd':
-            input_array = sort_array_descending(input_array);
+            sort_manual();
             break;
         default:
             goto jump;
     }
-    cout << endl << "Your sorted array is: ";
-    display_array(input_array);
 }
 
 int main() {
