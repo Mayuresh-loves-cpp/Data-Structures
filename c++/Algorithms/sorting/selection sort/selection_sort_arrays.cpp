@@ -1,9 +1,11 @@
+// including necessary headers
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
 
 using namespace std;
 
+// array class
 class arr {
     public:
     int *a;
@@ -14,7 +16,9 @@ class arr {
     }
 };
 
-int* generateRamdomArray(int length) {
+// function generates array of random numbers
+// returns base address of array
+int* generateRamdomArray(long int length) {
     int* array = new int(length);
     srand(time(0));
     for(int i = 0; i < length; i++) {
@@ -23,6 +27,7 @@ int* generateRamdomArray(int length) {
     return array;
 }
 
+// function displays array
 void display_array(arr* array) {
     cout << " [";
     for(int i = 0; i < array -> length; i++) {
@@ -34,6 +39,7 @@ void display_array(arr* array) {
     cout << "]" << endl;
 }
 
+// selection sort for ascending order
 void selection_sort_ascending(arr* array) {
     int min, tmp;
     for(int i = 0; i < array -> length - 1; i++) {
@@ -49,6 +55,7 @@ void selection_sort_ascending(arr* array) {
     }
 }
 
+// selection sort for ascending order
 void selection_sort_descending(arr* array) {
     int min, tmp;
     for(int i = 0; i < array -> length - 1; i++) {
@@ -64,12 +71,17 @@ void selection_sort_descending(arr* array) {
     }
 }
 
+// workflow function for random numbers sort
 void sort_random() {
     long int length = 0;
 
-    cout << endl << "How many random numbers you want to generate: ";
+    cout << endl;
+    jmp : cout << "How many random numbers you want to generate: ";
     cin >> length;
-    
+    if(length < 1) {
+        cout << "length should be non-negative and greater than 0!" << endl;
+        goto jmp;
+    }   
     arr* input_array = new arr(length);
     
     input_array -> a = generateRamdomArray(length);
@@ -100,8 +112,53 @@ void sort_random() {
     cout << endl;
 }
 
-void sort_manual() {}
+// function takes manually numbers from user
+int* take_array(long int length) {
+    int* array = new int(length);
+    for(int i = 0; i < length; i++) {
+        cout << ": ";
+        cin >> array[i];
+    }
+    return array;
+}
 
+// workflow function for manually inputed number sort
+void sort_manual() {
+    long int length;
+
+    cout << endl;
+    jmp : cout << "How many numbers you will enter: ";
+    cin >> length;
+    if(length < 1) {
+        cout << "length should be non-negative and greater than 0!" << endl;
+        goto jmp;
+    } 
+    arr* input_array = new arr(length);
+    cout << endl << "Enter array: -" << endl;
+    input_array -> a = take_array(length);
+    cout << endl <<"Choose corting type ascending or descending(type a or d): ";
+    char c;
+    jump : cin >> c;
+    switch(c) {
+        case 'a':
+            cout << endl <<"Sorting array..." << endl << endl;
+            selection_sort_ascending(input_array);
+            break;
+        case 'd':
+            cout << endl << "Sorting array..." << endl << endl;
+            selection_sort_descending(input_array);
+            break;
+        default:
+            cout << "plaese enter proper option!" << endl;
+            goto jump;
+    }
+
+    cout << "Your sorted array is:";
+    display_array(input_array);
+    cout << endl;
+}
+
+// main operation function
 void operations() {
     cout << endl << "Enter: -" << endl;
     cout << "  1 - if you to generate array of random numbers" << endl;
@@ -119,6 +176,7 @@ void operations() {
     }
 }
 
+// main function
 int main() {
     operations();
 }
