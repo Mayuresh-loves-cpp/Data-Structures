@@ -34,12 +34,27 @@ void display_array(arr* array) {
     cout << "]" << endl;
 }
 
-void selection_sort(arr* array) {
+void selection_sort_ascending(arr* array) {
     int min, tmp;
     for(int i = 0; i < array -> length - 1; i++) {
         min = i;
         for(int j = i + 1; j < array -> length; j++) {
             if(array -> a[j] < array -> a[min]) {
+                min = j;
+            }
+        }
+        tmp = array -> a[min];
+        array -> a[min] = array -> a[i];
+        array -> a[i] = tmp;
+    }
+}
+
+void selection_sort_descending(arr* array) {
+    int min, tmp;
+    for(int i = 0; i < array -> length - 1; i++) {
+        min = i;
+        for(int j = i + 1; j < array -> length; j++) {
+            if(array -> a[j] > array -> a[min]) {
                 min = j;
             }
         }
@@ -63,19 +78,34 @@ void sort_random() {
     display_array(input_array);
     cout << endl;
     
-    cout << "Sorting array..." << endl << endl;
-    selection_sort(input_array);
-    
+    cout << "Choose corting type ascending or descending(type a or d): ";
+    char c;
+    jump : cin >> c;
+    switch(c) {
+        case 'a':
+            cout << endl <<"Sorting array..." << endl << endl;
+            selection_sort_ascending(input_array);
+            break;
+        case 'd':
+            cout << endl << "Sorting array..." << endl << endl;
+            selection_sort_descending(input_array);
+            break;
+        default:
+            cout << "plaese enter proper option!" << endl;
+            goto jump;
+    }
+
     cout << "Your sorted array is:";
     display_array(input_array);
     cout << endl;
 }
+
 void sort_manual() {}
 
 void operations() {
     cout << endl << "Enter: -" << endl;
-    cout << "1 - if you to generate array of random numbers" << endl;
-    cout << "2 - if you want to enter numbers manualy" << endl;
+    cout << "  1 - if you to generate array of random numbers" << endl;
+    cout << "  2 - if you want to enter numbers manualy" << endl;
     cout << ": ";
     jump : switch (getchar()) {
         case '1':
