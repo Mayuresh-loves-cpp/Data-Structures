@@ -3,32 +3,41 @@
 
 using namespace std;
 
-void swap(node* a,node* b) {
-    node* tmp = new node;
-    tmp -> data = a -> data;
-    a -> data = b -> data;
-    b -> data = tmp -> data;
-}
-
-void sort_list_ascending(node* head, unsigned int length) {
-    node* tmp = new node;
-    for(node* i = head; i -> next != NULL; i =  i -> next) {
-        for(node* j = head; j -> index < length - i -> index - 1 ; j = j -> next) {
-            if (j -> data > j -> next -> data) {
-                swap(j, j -> next);
+void sort_list_ascending(node* head_ptr,unsigned int length) {
+    linked_list display;
+    node* min = new node;
+    node* i = new node;
+    node* j = new node;
+    int tmp;
+    for(i = head_ptr; i != NULL; i = i -> next) {
+        min = i;
+        for(j = i -> next; j != NULL; j = j -> next) {
+            if(j -> data < min -> data) {
+                min = j;
             }
         }
+        tmp = i -> data;
+        i -> data = min -> data;
+        min -> data = tmp;
     }
 }
 
-void sort_list_descending(node* head, unsigned int length) {
-    node* tmp = new node;
-    for(node* i = head; i -> next != NULL ; i =  i -> next) {
-        for(node* j = head; j -> index < length - i -> index - 1; j = j -> next) {
-            if (j -> data < j -> next -> data) {
-                swap(j, j -> next);
+void sort_list_descending(node* head_ptr,unsigned int length) {
+    linked_list display;
+    node* max = new node;
+    node* i = new node;
+    node* j = new node;
+    int tmp;
+    for(i = head_ptr; i != NULL; i = i -> next) {
+        max = i;
+        for(j = i -> next; j != NULL; j = j -> next) {
+            if(j -> data > max -> data) {
+                max = j;
             }
         }
+        tmp = i -> data;
+        i -> data = max -> data;
+        max -> data = tmp;
     }
 }
 
@@ -36,6 +45,7 @@ void operations() {
     unsigned int length;
     cout << endl << "How many numbers you want to enter: ";
     cin >> length;
+    cout << endl;
 
     linked_list list;
     if(length == 1) {
@@ -70,7 +80,7 @@ void operations() {
     
     list.display_list(head_ptr);
 }
+
 int main() {
     operations();
-    return 0;
 }
