@@ -1,7 +1,18 @@
 #include "linked_list.h"
-#include <iostream>
 
-using namespace std;
+// using namespace std;
+
+int* generateRamdomArray(long int length) {
+    // std::cout << "size: " <<sizeof(length);
+    int* array = new int(length);
+    srand(time(0));
+    for(int i = 0; i < length; i++) {
+        array[i] = rand()%(10000+1-(-10000))+(-10000);
+    }
+    std::cout << std::endl << "generated array successfully!";
+    return array;
+}
+
 
 void sort_list_ascending(node* head_ptr,unsigned int length) {
     linked_list display;
@@ -41,11 +52,11 @@ void sort_list_descending(node* head_ptr,unsigned int length) {
     }
 }
 
-void operations() {
+void sort_manual() {
     unsigned int length;
-    cout << endl << "How many numbers you want to enter: ";
-    cin >> length;
-    cout << endl;
+    std::cout << std::endl << "How many numbers you want to enter: ";
+    std::cin >> length;
+    std::cout << std::endl;
 
     linked_list list;
     if(length == 1) {
@@ -58,15 +69,15 @@ void operations() {
         list.make_list(length);
     }
     else {
-        cout << endl << "Please provide proper length!";
+        std::cout << std::endl << "Please provide proper length!";
     }
     
     node* head_ptr = new node;
     head_ptr = list.get_head_pointer();
 
     char type;
-    jump : cout << endl << "choose sorting type ascending or descending (type a or d): ";
-    cin >> type;
+    jump : std::cout << std::endl << "choose sorting type ascending or descending (type a or d): ";
+    std::cin >> type;
     switch (type) {
         case 'a':
             sort_list_ascending(head_ptr, length);
@@ -77,8 +88,67 @@ void operations() {
         default:
             goto jump;
     }
-    
+    std::cout << std::endl << "Your sorted numbers are: ";
     list.display_list(head_ptr);
+}
+
+void sort_random() {
+    long int length;
+    linked_list list;
+    std::cout << std::endl << "How many numbers you want to generate: ";
+    std::cin >> length;
+
+    if(length >= 1) {
+        std::cout << std::endl << "Generating list!";
+        int* numbers = new int(length);
+        numbers = generateRamdomArray(length);
+        list.make_list(length, numbers);
+    }
+    else {
+        std::cout << std::endl << "Please provide proper length!";
+        
+    }
+    
+    node* head_ptr = new node;
+    head_ptr = list.get_head_pointer();
+    std::cout << std::endl << "Generated List: ";
+    list.display_list(head_ptr);
+
+    std::cout << "choose sorting type ascending or descending (type a or d): ";
+    jump : switch (getchar()) {
+        case 'a':
+            std::cout << std::endl << "Sorting List!";
+            sort_list_ascending(head_ptr, length);
+            break;
+        case 'd':
+            std::cout << std::endl << "Sorting List!";
+            sort_list_descending(head_ptr, length);
+            break;
+        default:
+            goto jump;
+    }
+    std::cout << std::endl << "Your sorted numbers are: ";
+    list.display_list(head_ptr);
+}
+
+void operations() {
+    char pass;
+    std::cout << std::endl << "Enter: -" << std::endl;
+    std::cout << " 1 - if you to generate array of random numbers" << std::endl;
+    std::cout << " 2 - if you want to enter numbers manualy" << std::endl;
+    jump : std::cout << " : ";
+    std::cin >> pass;
+    switch (pass) {
+        case '1':
+            sort_random();
+            break;
+        case '2':
+            sort_manual();
+            break;
+        default:
+            std::cout << "Please select a proper option!" << std::endl;
+            goto jump;
+    }
 }
 
 int main() {

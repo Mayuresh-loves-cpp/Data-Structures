@@ -5,7 +5,7 @@
 class node {
     public:
     int data;
-    unsigned int index;
+    // unsigned int index;
     struct node* next;
 };
 
@@ -15,10 +15,11 @@ class linked_list {
     public:
     class node* head = new node;
     class node* head_pointer = new node;
-    void make_list(unsigned int length);
     bool isEmpty();
     void make_list1();
     void make_list2();
+    void make_list(unsigned int length);
+    void make_list(unsigned int length, int* arr);
     int display_list(node* head);
     node* get_head_pointer();
     linked_list() {
@@ -36,7 +37,7 @@ void linked_list :: make_list(unsigned int length) {
     std::cout << ": ";
     std::cin >> ip;
     head -> data = ip;
-    head -> index = counter;
+    // head -> index = counter;
     head -> next = NULL;
     head_pointer = head;
     counter++;
@@ -45,7 +46,7 @@ void linked_list :: make_list(unsigned int length) {
     std::cout << ": ";
     std::cin >> ip;
     second -> data = ip;
-    second -> index = counter;
+    // second -> index = counter;
     second -> next = NULL;
     head -> next = second;
     counter++;
@@ -54,8 +55,8 @@ void linked_list :: make_list(unsigned int length) {
         std::cout << ": ";
         std::cin >> ip;
         head -> data = ip;
-        head -> index = counter;
-        head ->next = NULL;
+        // head -> index = counter;
+        head -> next = NULL;
         second -> next = head;
         counter++;
         i = i + 1;
@@ -68,7 +69,57 @@ void linked_list :: make_list(unsigned int length) {
         std::cout << ": ";
         std::cin >> ip;
         second -> data = ip;
-        second -> index = counter;
+        // second -> index = counter;
+        second -> next = NULL;
+        head -> next = second;
+        i = i + 1;
+        counter++;
+    }
+}
+
+void linked_list :: make_list(unsigned int length, int* arr) {
+    int i = 0;
+    unsigned int counter = 0;
+    
+    head -> data = arr[counter];
+    // head -> index = counter;
+    head -> next = NULL;
+    head_pointer = head;
+    counter++;
+    i++;
+
+    if(i == length) {
+        return;
+    }
+    
+    class node* second = new node;
+    second -> data = arr[counter];
+    // second -> index = counter;
+    second -> next = NULL;
+    head -> next = second;
+    counter++;
+    i++;
+
+    if(i == length) {
+        return;
+    }
+
+    while(i < length) { 
+        head = new node;
+        head -> data = arr[counter];
+        // head -> index = counter;
+        head ->next = NULL;
+        second -> next = head;
+        counter++;
+        i = i + 1;
+
+        if(i == length) {
+            break;
+        }
+
+        second = new node;
+        second -> data = arr[counter];
+        // second -> index = counter;
         second -> next = NULL;
         head -> next = second;
         i = i + 1;
@@ -81,11 +132,11 @@ node* linked_list::get_head_pointer() {
 }
 
 int linked_list::display_list(node* head) {
-    // if(isEmpty()) {
-    //     std::cout << "list is empty!" << std::endl;
-    //     return -1;
-    // }
-    std::cout << std::endl << "your sorted list is: [";
+    if(isEmpty()) {
+        std::cout << "list is empty!" << std::endl;
+        return -1;
+    }
+    std::cout << "[";
     class node* display_pointer = new node;
     display_pointer = head;
     while(display_pointer != NULL) {
@@ -122,6 +173,7 @@ void linked_list :: make_list1() {
 
 // creates list of two nodes
 void linked_list :: make_list2() {
+    std::cout << "Enter list: -" << std::endl;
     int ip;
     std::cout << ": ";
     std::cin >> ip;
