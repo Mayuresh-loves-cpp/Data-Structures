@@ -12,7 +12,7 @@ class arr {
     long int length;
     arr(long int len) {
         length = len;
-        int* a = new int(len);
+        int* a = new int[len];
     }
 };
 
@@ -22,7 +22,7 @@ int* generateRamdomArray(long int length) {
     int* array = new int(length);
     srand(time(0));
     for(int i = 0; i < length; i++) {
-        array[i] = rand()%(10000+1-(-10000))+(-10000);
+        array[i] = rand()%(1000000+1-(-1000000))+(-1000000);
     }
     return array;
 }

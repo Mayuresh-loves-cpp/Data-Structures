@@ -4,12 +4,11 @@
 
 int* generateRamdomArray(long int length) {
     // std::cout << "size: " <<sizeof(length);
-    int* array = new int(length);
+    int* array = new int[length];
     srand(time(0));
     for(int i = 0; i < length; i++) {
-        array[i] = rand()%(10000+1-(-10000))+(-10000);
+        array[i] = rand()%(1000000+1-(-1000000))+(-1000000);
     }
-    std::cout << std::endl << "generated array successfully!";
     return array;
 }
 
@@ -99,8 +98,8 @@ void sort_random() {
     std::cin >> length;
 
     if(length >= 1) {
-        std::cout << std::endl << "Generating list!";
-        int* numbers = new int(length);
+        std::cout << std::endl << "Generating list...";
+        int* numbers;
         numbers = generateRamdomArray(length);
         list.make_list(length, numbers);
     }
@@ -117,11 +116,11 @@ void sort_random() {
     std::cout << "choose sorting type ascending or descending (type a or d): ";
     jump : switch (getchar()) {
         case 'a':
-            std::cout << std::endl << "Sorting List!";
+            std::cout << std::endl << "Sorting List...";
             sort_list_ascending(head_ptr, length);
             break;
         case 'd':
-            std::cout << std::endl << "Sorting List!";
+            std::cout << std::endl << "Sorting List...";
             sort_list_descending(head_ptr, length);
             break;
         default:
