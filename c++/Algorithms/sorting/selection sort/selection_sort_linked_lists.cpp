@@ -1,9 +1,7 @@
 #include "linked_list.h"
 
-// using namespace std;
-
+// function returns array of random numbers of given length
 int* generateRamdomArray(long int length) {
-    // std::cout << "size: " <<sizeof(length);
     int* array = new int[length];
     srand(time(0));
     for(int i = 0; i < length; i++) {
@@ -12,7 +10,7 @@ int* generateRamdomArray(long int length) {
     return array;
 }
 
-
+// function for sorting list using selection sort in ascending order
 void sort_list_ascending(node* head_ptr,unsigned int length) {
     linked_list display;
     node* min = new node;
@@ -32,6 +30,7 @@ void sort_list_ascending(node* head_ptr,unsigned int length) {
     }
 }
 
+// function for sorting list using selection sort in descending order
 void sort_list_descending(node* head_ptr,unsigned int length) {
     linked_list display;
     node* max = new node;
@@ -51,6 +50,7 @@ void sort_list_descending(node* head_ptr,unsigned int length) {
     }
 }
 
+// opeartion function for manually inputed numbers
 void sort_manual() {
     unsigned int length;
     std::cout << std::endl << "How many numbers you want to enter: ";
@@ -58,13 +58,7 @@ void sort_manual() {
     std::cout << std::endl;
 
     linked_list list;
-    if(length == 1) {
-        list.make_list1();
-    }
-    else if(length == 2) {
-        list.make_list2();
-    }
-    else if(length > 2) {
+    if(length >= 1) {
         list.make_list(length);
     }
     else {
@@ -91,6 +85,7 @@ void sort_manual() {
     list.display_list(head_ptr);
 }
 
+// operation function for randomly generated numbers
 void sort_random() {
     long int length;
     linked_list list;
@@ -130,6 +125,7 @@ void sort_random() {
     list.display_list(head_ptr);
 }
 
+// main opeartional function
 void operations() {
     char pass;
     std::cout << std::endl << "Enter: -" << std::endl;
@@ -150,6 +146,7 @@ void operations() {
     }
 }
 
+// the main function
 int main() {
     operations();
 }

@@ -16,8 +16,6 @@ class linked_list {
     class node* head = new node;
     class node* head_pointer = new node;
     bool isEmpty();
-    void make_list1();
-    void make_list2();
     void make_list(unsigned int length);
     void make_list(unsigned int length, int* arr);
     int display_list(node* head);
@@ -27,35 +25,43 @@ class linked_list {
     }
 };
 
-
-
+// all linked_list class' funtion definations
+// this functions creates linked list by taking input from user
 void linked_list :: make_list(unsigned int length) {
-    int ip, i = 2;
+    int ip, i = 0;
     unsigned int counter = 0;
     std::cout << "Enter list: -" << std::endl;
     
     std::cout << ": ";
     std::cin >> ip;
     head -> data = ip;
-    // head -> index = counter;
     head -> next = NULL;
     head_pointer = head;
     counter++;
+    i++;
+
+    if(i == length) {
+        return;
+    }
     
     class node* second = new node;
     std::cout << ": ";
     std::cin >> ip;
     second -> data = ip;
-    // second -> index = counter;
     second -> next = NULL;
     head -> next = second;
     counter++;
+    i++;
+
+    if(i == length) {
+        return;
+    }
+
     while(i < length){ 
         head = new node;
         std::cout << ": ";
         std::cin >> ip;
         head -> data = ip;
-        // head -> index = counter;
         head -> next = NULL;
         second -> next = head;
         counter++;
@@ -69,7 +75,6 @@ void linked_list :: make_list(unsigned int length) {
         std::cout << ": ";
         std::cin >> ip;
         second -> data = ip;
-        // second -> index = counter;
         second -> next = NULL;
         head -> next = second;
         i = i + 1;
@@ -77,12 +82,12 @@ void linked_list :: make_list(unsigned int length) {
     }
 }
 
+// this function creates list using elements given in array
 void linked_list :: make_list(unsigned int length, int* arr) {
     int i = 0;
     unsigned int counter = 0;
     
     head -> data = arr[counter];
-    // head -> index = counter;
     head -> next = NULL;
     head_pointer = head;
     counter++;
@@ -94,7 +99,6 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     
     class node* second = new node;
     second -> data = arr[counter];
-    // second -> index = counter;
     second -> next = NULL;
     head -> next = second;
     counter++;
@@ -107,7 +111,6 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     while(i < length) { 
         head = new node;
         head -> data = arr[counter];
-        // head -> index = counter;
         head ->next = NULL;
         second -> next = head;
         counter++;
@@ -119,7 +122,6 @@ void linked_list :: make_list(unsigned int length, int* arr) {
 
         second = new node;
         second -> data = arr[counter];
-        // second -> index = counter;
         second -> next = NULL;
         head -> next = second;
         i = i + 1;
@@ -127,10 +129,12 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     }
 }
 
+// this funxtion returns head pointer of the list
 node* linked_list::get_head_pointer() {
     return head_pointer;
 }
 
+// function for displying list by providing it head pointer
 int linked_list::display_list(node* head) {
     if(isEmpty()) {
         std::cout << "list is empty!" << std::endl;
@@ -153,6 +157,7 @@ int linked_list::display_list(node* head) {
     return 0;
 }
 
+// function to check if list is empty
 bool linked_list::isEmpty() {
     if(head_pointer == NULL) {
         return true;
@@ -160,30 +165,4 @@ bool linked_list::isEmpty() {
     else{
         return false;
     }
-}
-// creates list of one nodes
-void linked_list :: make_list1() {
-    int ip;
-    std::cout << ": ";
-    std::cin >> ip;
-    head -> data = ip;
-    head -> next = NULL;
-    head_pointer = head;
-}
-
-// creates list of two nodes
-void linked_list :: make_list2() {
-    std::cout << "Enter list: -" << std::endl;
-    int ip;
-    std::cout << ": ";
-    std::cin >> ip;
-    head -> data = ip;
-    head -> next = NULL;
-    head_pointer = head;
-    class node* second = new node;
-    std::cout << ": ";
-    std::cin >> ip;
-    second -> data = ip;
-    second -> next = NULL;
-    head -> next = second;
 }
