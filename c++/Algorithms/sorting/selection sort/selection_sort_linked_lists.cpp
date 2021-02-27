@@ -1,4 +1,6 @@
 #include "linked_list.h"
+#include <stdlib.h>
+#include <time.h>
 
 // function returns array of random numbers of given length
 int* generateRamdomArray(long int length) {

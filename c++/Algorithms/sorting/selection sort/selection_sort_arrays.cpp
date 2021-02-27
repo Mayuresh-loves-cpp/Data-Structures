@@ -12,7 +12,7 @@ class arr {
     long int length;
     arr(long int len) {
         length = len;
-        int* a = new int[len];
+        a = new int[len];
     }
 };
 
