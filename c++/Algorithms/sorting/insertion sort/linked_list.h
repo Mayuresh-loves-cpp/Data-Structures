@@ -90,6 +90,7 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     
     head -> data = arr[counter];
     head -> next = NULL;
+    head -> prev = NULL;
     head_pointer = head;
     counter++;
     i++;
@@ -101,6 +102,7 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     class node* second = new node;
     second -> data = arr[counter];
     second -> next = NULL;
+    second -> prev = head;
     head -> next = second;
     counter++;
     i++;
@@ -112,7 +114,8 @@ void linked_list :: make_list(unsigned int length, int* arr) {
     while(i < length) { 
         head = new node;
         head -> data = arr[counter];
-        head ->next = NULL;
+        head -> next = NULL;
+        head -> prev = second;
         second -> next = head;
         counter++;
         i = i + 1;
@@ -124,6 +127,7 @@ void linked_list :: make_list(unsigned int length, int* arr) {
         second = new node;
         second -> data = arr[counter];
         second -> next = NULL;
+        second -> prev = head;
         head -> next = second;
         i = i + 1;
         counter++;
