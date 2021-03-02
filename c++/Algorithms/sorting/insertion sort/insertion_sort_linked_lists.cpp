@@ -12,43 +12,31 @@ int* generateRamdomArray(long int length) {
     return array;
 }
 
-// function for sorting list using selection sort in ascending order
+// function for sorting list using insertion sort in ascending order
 void sort_list_ascending(node* head_ptr, unsigned int length) {
-    linked_list display;
-    node* min = new node;
-    node* i = new node;
-    node* j = new node;
     int tmp;
-    for(i = head_ptr; i != NULL; i = i -> next) {
-        min = i;
-        for(j = i -> next; j != NULL; j = j -> next) {
-            if(j -> data < min -> data) {
-                min = j;
+    for(node* i = head_ptr; i != NULL; i = i -> next) {
+        for(node* j = i; j -> prev != NULL; j = j -> prev) {
+            if(j -> data < j -> prev -> data) {
+                tmp = j -> data;
+                j -> data = j -> prev -> data;
+                j -> prev -> data = tmp;
             }
         }
-        tmp = i -> data;
-        i -> data = min -> data;
-        min -> data = tmp;
     }
 }
 
-// function for sorting list using selection sort in descending order
+// function for sorting list using insertion sort in descending order
 void sort_list_descending(node* head_ptr, unsigned int length) {
-    linked_list display;
-    node* max = new node;
-    node* i = new node;
-    node* j = new node;
     int tmp;
-    for(i = head_ptr; i != NULL; i = i -> next) {
-        max = i;
-        for(j = i -> next; j != NULL; j = j -> next) {
-            if(j -> data > max -> data) {
-                max = j;
+    for(node* i = head_ptr; i != NULL; i = i -> next) {
+        for(node* j = i; j -> prev != NULL; j = j -> prev) {
+            if(j -> data > j -> prev -> data) {
+                tmp = j -> data;
+                j -> data = j -> prev -> data;
+                j -> prev -> data = tmp;
             }
         }
-        tmp = i -> data;
-        i -> data = max -> data;
-        max -> data = tmp;
     }
 }
 
