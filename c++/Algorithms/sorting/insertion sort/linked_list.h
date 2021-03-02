@@ -31,7 +31,6 @@ class linked_list {
 // this functions creates linked list by taking input from user
 void linked_list :: make_list(unsigned int length) {
     int ip, i = 0;
-    // unsigned int counter = 0;
     std::cout << "Enter list: -" << std::endl;
     
     std::cout << ": ";
@@ -40,7 +39,6 @@ void linked_list :: make_list(unsigned int length) {
     head -> next = NULL;
     head -> prev = NULL;
     head_pointer = head;
-    // counter++;
     i++;
 
     if(i == length) {
@@ -54,7 +52,6 @@ void linked_list :: make_list(unsigned int length) {
     second -> next = NULL;
     second -> prev = head;
     head -> next = second;
-    // counter++;
     i++;
 
     if(i == length) {
@@ -69,7 +66,6 @@ void linked_list :: make_list(unsigned int length) {
         head -> next = NULL;
         head -> prev = second;
         second -> next = head;
-        // counter++;
         i = i + 1;
 
         if(i == length) {
@@ -84,7 +80,6 @@ void linked_list :: make_list(unsigned int length) {
         second -> prev = head;
         head -> next = second;
         i = i + 1;
-        // counter++;
     }
 }
 
