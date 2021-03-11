@@ -89,22 +89,20 @@ label:
 
     c = getchar();
 
-    while(1) {
-        switch(c) {
-            case '1': enqueue();
-                break;
+    switch(c) {
+        case '1': enqueue();
+            break;
 
-            case '2': dequeue();
-                break;
+        case '2': dequeue();
+            break;
 
-            case '3': display();
-                break;
+        case '3': display();
+            break;
 
-            case '0': exit(0);
+        case '0': exit(0);
 
-            default: printf("\nSelect correct option!\n");
-        }
-        getchar(); // clear input buffer
-        goto label;
+        default: printf("\nSelect correct option!\n");
     }
+    getchar(); // clear input buffer
+    goto label;
 }

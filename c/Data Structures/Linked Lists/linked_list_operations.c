@@ -174,27 +174,25 @@ label:
 
     c = getchar();
 
-    while(1) {
-        switch(c) {
-            case '1': create_list();
-                break;
+    switch(c) {
+        case '1': create_list();
+            break;
 
-            case '2': display();
-                break;
+        case '2': display();
+            break;
 
-            case '3': add_node();
-                break;
+        case '3': add_node();
+            break;
 
-            case '4': delete_node();
-                break;
+        case '4': delete_node();
+            break;
 
-            case '0': exit(0);
+        case '0': exit(0);
 
-            default: printf("\nSelect correct option!\n");
-        }
-        getchar(); // clear input buffer
-        goto label;
+        default: printf("\nSelect correct option!\n");
     }
+    getchar(); // clear input buffer
+    goto label;
 }
 
 int main() {
