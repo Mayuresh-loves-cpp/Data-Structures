@@ -43,16 +43,13 @@ void create_list() {
         printf("Enter data of %d node: ", i);
         scanf("%d", &node->data);
 
-        if(is_list_empty()) {
-            node->next = NULL;
+        if(is_list_empty())
             head = node;
-            pre = node;
-        }
-        else {
-            node->next = NULL;
+        else
             pre->next = node;
-            pre = node;
-        }
+        
+        node->next = NULL;
+        pre = node;
     }
 
     printf("\nLinked list successfully created\n");

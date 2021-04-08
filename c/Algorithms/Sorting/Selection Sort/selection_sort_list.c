@@ -59,16 +59,13 @@ void create_node() {
     printf("Enter data: ");
     scanf("%d", &node->data);
 
-    if(is_list_empty()) {
-        node->next = NULL;
+    if(is_list_empty())
         head = node;
-        pre_node = node;
-    }
-    else {
-        node->next = NULL;
+    else
         pre_node->next = node;
-        pre_node = node;
-    }
+    
+    node->next = NULL;
+    pre_node = node;
 }
 
 // selection sort
